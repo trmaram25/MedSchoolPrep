@@ -25,75 +25,178 @@ body{
   letter-spacing:-0.02em;
 }
 
+/* ══════════════════════════════════
+   CURSOR GLOW — desktop only
+══════════════════════════════════ */
 #cursor-glow {
-  position:fixed;width:440px;height:440px;border-radius:50%;pointer-events:none;z-index:9999;
-  left:0;top:0;transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(99,102,241,0.20) 0%,rgba(59,130,246,0.12) 30%,rgba(59,130,246,0.04) 60%,transparent 75%);
-  filter:blur(6px);will-change:left,top;transition:opacity 0.5s ease;mix-blend-mode:screen;
+  position:fixed;
+  width:440px;
+  height:440px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  left:0; top:0;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,
+    rgba(99,102,241,0.20) 0%,
+    rgba(59,130,246,0.12) 30%,
+    rgba(59,130,246,0.04) 60%,
+    transparent 75%
+  );
+  filter:blur(6px);
+  will-change:left,top;
+  transition:opacity 0.5s ease;
+  mix-blend-mode:screen;
 }
-@media(hover:none),(pointer:coarse){#cursor-glow{display:none!important;}}
+/* Hide on any touch/coarse pointer device */
+@media (hover:none),(pointer:coarse){
+  #cursor-glow{display:none!important;}
+}
 
+/* ── GRID CANVAS ── */
 #grid-canvas{
   position:fixed;inset:0;z-index:-5;
-  background-image:linear-gradient(to right,rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.035) 1px,transparent 1px);
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,0.035) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,0.035) 1px,transparent 1px);
   background-size:52px 52px;
   -webkit-mask-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),black 0%,transparent 75%);
   mask-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),black 0%,transparent 75%);
 }
 
-.grain{position:fixed;inset:0;z-index:-4;opacity:0.025;pointer-events:none;
+/* ── GRAIN ── */
+.grain{
+  position:fixed;inset:0;z-index:-4;opacity:0.025;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat:repeat;background-size:200px 200px;
 }
 
-.ray-hero{position:absolute;top:-280px;left:50%;transform:translateX(-50%);width:1200px;height:700px;pointer-events:none;background:radial-gradient(50% 50% at 50% 0%,rgba(59,130,246,0.18) 0%,transparent 100%);filter:blur(80px);z-index:0;}
-.glow-blue{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.12) 0%,transparent 70%);filter:blur(60px);pointer-events:none;}
+/* ── AMBIENT LIGHTS ── */
+.ray-hero{
+  position:absolute;top:-280px;left:50%;transform:translateX(-50%);
+  width:1200px;height:700px;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 0%,rgba(59,130,246,0.18) 0%,transparent 100%);
+  filter:blur(80px);z-index:0;
+}
+.glow-blue{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,0.12) 0%,transparent 70%);
+  filter:blur(60px);pointer-events:none;
+}
 
-nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(3,0,20,0.65);}
-.nav-inner{max-width:1280px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+/* ── NAV ── */
+nav{
+  position:fixed;width:100%;top:0;z-index:300;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(3,0,20,0.65);
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;
+  padding:0 20px;height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
 .nav-logo{display:flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;}
-.nav-logo-icon{width:34px;height:34px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,#3b82f6,#6366f1);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:white;transition:transform .3s;}
+.nav-logo-icon{
+  width:34px;height:34px;border-radius:11px;flex-shrink:0;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:17px;color:white;transition:transform .3s;
+}
 .nav-logo-icon:hover{transform:rotate(8deg);}
 .nav-logo-text{font-weight:800;font-size:17px;color:white;letter-spacing:-.03em;}
-.nav-links{display:flex;gap:28px;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);}
+.nav-links{
+  display:flex;gap:28px;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);
+}
 .nav-links a{color:inherit;text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:white;}
 .nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
-.hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.75);border-radius:2px;transition:all .28s cubic-bezier(.23,1,.32,1);}
+/* ── HAMBURGER ── */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;background:none;border:none;padding:6px;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:rgba(255,255,255,0.75);border-radius:2px;
+  transition:all .28s cubic-bezier(.23,1,.32,1);
+}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;z-index:250;background:rgba(3,0,20,0.97);border-bottom:1px solid rgba(255,255,255,0.07);backdrop-filter:blur(24px);flex-direction:column;padding:6px 0 20px;}
+/* ── MOBILE DRAWER ── */
+.mobile-menu{
+  display:none;position:fixed;
+  top:62px;left:0;right:0;z-index:250;
+  background:rgba(3,0,20,0.97);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  backdrop-filter:blur(24px);
+  flex-direction:column;
+  padding:6px 0 20px;
+}
 .mobile-menu.open{display:flex;}
-.mobile-menu a{padding:15px 24px;font-size:15px;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.04);transition:color .2s,background .2s;}
+.mobile-menu a{
+  padding:15px 24px;font-size:15px;font-weight:600;
+  color:rgba(255,255,255,0.65);text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  transition:color .2s,background .2s;
+}
 .mobile-menu a:hover,.mobile-menu a:active{color:white;background:rgba(255,255,255,0.03);}
 .menu-btns{display:flex;flex-direction:column;gap:10px;padding:14px 20px 0;}
 
-.btn-primary{position:relative;overflow:hidden;background:white;color:#030014;font-weight:900;border-radius:9999px;transition:all .3s ease;cursor:pointer;border:none;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;}
-.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.08),transparent);transform:translateX(-100%);transition:.5s;}
+/* ── BUTTONS ── */
+.btn-primary{
+  position:relative;overflow:hidden;background:white;color:#030014;
+  font-weight:900;border-radius:9999px;
+  transition:all .3s ease;cursor:pointer;border:none;
+  font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,0.08),transparent);
+  transform:translateX(-100%);transition:.5s;
+}
 .btn-primary:hover::before{transform:translateX(100%);}
 .btn-primary:hover{transform:scale(1.03);box-shadow:0 0 30px rgba(255,255,255,0.2);}
 .btn-primary:active{opacity:0.9;transform:scale(0.98);}
 
-.btn-outline{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:white;font-weight:700;border-radius:9999px;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;}
+.btn-outline{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  color:white;font-weight:700;border-radius:9999px;cursor:pointer;
+  transition:all .3s;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;
+}
 .btn-outline:hover{background:rgba(255,255,255,0.12);}
 .btn-outline:active{opacity:0.85;}
 
-.btn-blue{background:var(--blue);color:white;font-weight:700;border-radius:9999px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;}
+.btn-blue{
+  background:var(--blue);color:white;font-weight:700;
+  border-radius:9999px;border:none;cursor:pointer;
+  transition:all .3s;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;
+}
 .btn-blue:hover{box-shadow:0 0 24px rgba(59,130,246,0.45);transform:scale(1.02);}
 .btn-blue:active{opacity:0.85;transform:scale(0.98);}
 
-.card{background:rgba(8,8,20,0.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.06);transition:all .5s cubic-bezier(.23,1,.32,1);border-radius:24px;}
-.card:hover{border-color:rgba(59,130,246,0.25);background:rgba(12,12,28,0.65);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.4);}
-@media(hover:none){.card:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,0.06);background:rgba(8,8,20,0.5);}}
+/* ── BENTO CARDS ── */
+.card{
+  background:rgba(8,8,20,0.5);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.06);
+  transition:all .5s cubic-bezier(.23,1,.32,1);border-radius:24px;
+}
+.card:hover{
+  border-color:rgba(59,130,246,0.25);background:rgba(12,12,28,0.65);
+  transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.4);
+}
+/* no hover lift on touch devices */
+@media (hover:none){.card:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,0.06);background:rgba(8,8,20,0.5);}}
 
+/* ── BENTO GRID ── */
 .bento-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
 .col-8{grid-column:span 8;}
 .col-4{grid-column:span 4;}
 
+/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);}
@@ -101,183 +204,194 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
 .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);}
 .reveal-right.visible{opacity:1;transform:translateX(0);}
 
+/* ── MOCKUP ── */
 .mockup-wrap{perspective:2400px;transform-style:preserve-3d;}
-.mockup-3d{transition:transform .12s ease-out;box-shadow:0 60px 120px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06);border-radius:18px;overflow:hidden;}
+.mockup-3d{
+  transition:transform .12s ease-out;
+  box-shadow:0 60px 120px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06);
+  border-radius:18px;overflow:hidden;
+}
 
+/* ── PING ── */
 @keyframes ping2{75%,100%{transform:scale(2);opacity:0;}}
 .ping-dot{animation:ping2 1.4s cubic-bezier(0,0,.2,1) infinite;}
 
+/* ── MARQUEE ── */
 .marquee-track{display:flex;gap:0;width:max-content;animation:marquee 28s linear infinite;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .marquee-track:hover{animation-play-state:paused;}
 
+/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
 
+/* ── PROGRESS BARS ── */
 .prog-bar{height:4px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-top:10px;}
 .prog-fill{height:100%;border-radius:4px;transition:width 1.5s cubic-bezier(.2,.8,.2,1);}
 
-.cat-pill{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);cursor:pointer;transition:all .2s;white-space:nowrap;}
+/* ── CATEGORY PILLS ── */
+.cat-pill{
+  padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;
+  border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
 .cat-pill:hover,.cat-pill.active{background:var(--blue);border-color:var(--blue);color:white;}
 
-.modal-bg{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:0;}
+/* ── MODAL ── */
+.modal-bg{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:none;align-items:flex-end;justify-content:center;
+  padding:0;
+}
 .modal-bg.open{display:flex;}
-.modal-box{width:100%;max-width:480px;background:#0b0f1a;border:1px solid rgba(255,255,255,.08);border-radius:24px 24px 0 0;padding:36px 28px 40px;position:relative;max-height:92svh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-@media(min-width:500px){.modal-bg{align-items:center;padding:16px;}.modal-box{border-radius:28px;max-width:440px;padding:40px 36px;}}
+.modal-box{
+  width:100%;max-width:480px;
+  background:#0b0f1a;border:1px solid rgba(255,255,255,.08);
+  border-radius:24px 24px 0 0;padding:36px 28px 40px;
+  position:relative;max-height:92svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+/* On larger screens center it */
+@media(min-width:500px){
+  .modal-bg{align-items:center;padding:16px;}
+  .modal-box{border-radius:28px;max-width:440px;padding:40px 36px;}
+}
 
-.modal-input{width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 18px;color:white;font-size:16px;outline:none;transition:border-color .2s;font-family:'Inter',sans-serif;-webkit-appearance:none;}
+.modal-input{
+  width:100%;background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;padding:14px 18px;
+  color:white;font-size:16px;/* 16px prevents iOS auto-zoom */
+  outline:none;transition:border-color .2s;
+  font-family:'Inter',sans-serif;-webkit-appearance:none;
+}
 .modal-input:focus{border-color:var(--blue);}
 .modal-input::placeholder{color:rgba(255,255,255,.3);}
 
+/* ── GRADIENTS ── */
 .grad-blue{background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .grad-green{background:linear-gradient(135deg,#34d399,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
+/* ── FEATURE ICON ── */
 .feat-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
 
-.test-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:24px;transition:border-color .3s;}
+/* ── TESTIMONIAL ── */
+.test-card{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:20px;padding:24px;transition:border-color .3s;
+}
 .test-card:hover{border-color:rgba(59,130,246,0.3);}
 
-.sec-label{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;}
+/* ── SECTION LABEL ── */
+.sec-label{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 14px;
+  border-radius:100px;border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);
+  margin-bottom:20px;
+}
 
 /* ══════════════════════════════════════════
-   SPECIALTY DIAGNOSTIC SECTION
+   RESPONSIVE — TABLET (≤ 900px)
 ══════════════════════════════════════════ */
-.diag-section{
-  padding:0 24px 96px;position:relative;overflow:hidden;
-}
-.diag-bg{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:800px;height:600px;pointer-events:none;
-  background:radial-gradient(ellipse at center,rgba(99,102,241,0.07) 0%,transparent 70%);
-  filter:blur(40px);
-}
-.specialty-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-  margin-bottom:32px;
-}
-.spec-card{
-  padding:18px 16px;border-radius:16px;
-  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
-  cursor:pointer;transition:all .25s cubic-bezier(.23,1,.32,1);
-  display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
-}
-.spec-card:hover{background:rgba(99,102,241,0.1);border-color:rgba(99,102,241,0.3);transform:translateY(-3px);}
-.spec-card.selected{background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.5);box-shadow:0 0 28px rgba(99,102,241,0.15);}
-.spec-card .spec-emoji{font-size:28px;line-height:1;}
-.spec-card .spec-name{font-size:12px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:-.01em;}
-
-.curriculum-panel{
-  background:rgba(8,8,20,0.7);border:1px solid rgba(99,102,241,0.2);border-radius:20px;
-  overflow:hidden;
-  max-height:0;opacity:0;
-  transition:max-height .6s cubic-bezier(.2,.8,.2,1),opacity .4s ease,margin .4s ease;
-  margin-top:0;
-}
-.curriculum-panel.open{max-height:700px;opacity:1;margin-top:0;}
-
-.curr-header{
-  padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.07);
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(99,102,241,0.08);
-}
-.curr-body{padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-
-.unit-card{
-  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
-  border-radius:14px;padding:16px;transition:border-color .2s;
-}
-.unit-card:hover{border-color:rgba(99,102,241,0.3);}
-.unit-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(99,102,241,.7);margin-bottom:8px;}
-.unit-title{font-size:13px;font-weight:700;color:white;margin-bottom:10px;line-height:1.3;}
-.unit-lessons{display:flex;flex-direction:column;gap:5px;}
-.lesson-row{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;background:rgba(255,255,255,0.02);}
-.lesson-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.lesson-name{font-size:11px;color:rgba(255,255,255,.4);}
-.mastery-bar{height:3px;border-radius:3px;background:rgba(255,255,255,0.06);margin-top:10px;overflow:hidden;}
-.mastery-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#6366f1,#818cf8);transition:width 1s ease .3s;}
-
-.save-path-btn{
-  margin-top:20px;padding:12px 28px;border-radius:9999px;
-  background:linear-gradient(135deg,#6366f1,#818cf8);
-  border:none;color:white;font-weight:700;font-size:14px;
-  cursor:pointer;font-family:'Inter',sans-serif;
-  transition:all .3s;box-shadow:0 0 24px rgba(99,102,241,0.3);
-}
-.save-path-btn:hover{transform:scale(1.03);box-shadow:0 0 40px rgba(99,102,241,0.5);}
-
 @media(max-width:900px){
   .col-8,.col-4{grid-column:span 12 !important;}
   .bento-grid{grid-template-columns:1fr;}
   .mini-float{display:none !important;}
   .chart-bars{display:none !important;}
   .three-col{grid-template-columns:1fr 1fr !important;}
-  .specialty-grid{grid-template-columns:repeat(4,1fr);}
-  .curr-body{grid-template-columns:1fr;}
 }
 
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 640px)
+══════════════════════════════════════════ */
 @media(max-width:640px){
+  /* Nav */
   .nav-links{display:none !important;}
   .nav-desktop-btns{display:none !important;}
   .hamburger{display:flex !important;}
 
+  /* Hero */
   .hero-wrap{padding:96px 18px 56px !important;}
   .hero-ctas{flex-direction:column !important;align-items:stretch !important;max-width:100% !important;}
   .hero-ctas button{width:100%;}
   .hero-glows{display:none;}
 
+  /* Mockup: collapse sidebar, shrink height */
   .mockup-sidebar{display:none !important;}
   .mockup-inner{height:300px !important;}
   .mockup-wrap{perspective:none !important;}
   .mockup-3d{transform:none !important;}
 
-  .stats-grid{grid-template-columns:1fr !important;border-radius:16px !important;}
-  .stats-grid > div{border-left:none !important;border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06) !important;padding:22px 20px !important;}
+  /* Stats: stack */
+  .stats-grid{
+    grid-template-columns:1fr !important;
+    border-radius:16px !important;
+  }
+  .stats-grid > div{
+    border-left:none !important;border-right:none !important;
+    border-bottom:1px solid rgba(255,255,255,.06) !important;
+    padding:22px 20px !important;
+  }
   .stats-grid > div:last-child{border-bottom:none !important;}
 
+  /* Grids */
   .three-col{grid-template-columns:1fr !important;gap:12px !important;}
   .two-col{grid-template-columns:1fr !important;gap:36px !important;}
   .test-grid{grid-template-columns:1fr !important;gap:12px !important;}
+
+  /* Hide quiz panel on mobile (left text + CTA is enough) */
   .quiz-panel{display:none;}
+
+  /* Bento */
   .bento-grid{gap:10px;}
   .card{border-radius:18px;}
+
+  /* Section padding */
   .sp{padding-left:18px !important;padding-right:18px !important;}
+
+  /* Final CTA */
   .final-ctas{flex-direction:column !important;align-items:stretch !important;max-width:100% !important;}
   .final-ctas button{width:100%;}
+
+  /* Footer */
   .footer-top{flex-direction:column !important;gap:28px !important;}
   .footer-links{gap:28px !important;}
   .footer-bottom{flex-direction:column !important;gap:8px !important;text-align:center !important;}
-
-  .specialty-grid{grid-template-columns:repeat(2,1fr);}
-  .curr-body{grid-template-columns:1fr;}
-  .diag-section{padding:0 18px 72px;}
 }
 </style>
 </head>
 <body>
 
+<!-- CURSOR GLOW -->
 <div id="cursor-glow"></div>
+
+<!-- AMBIENT -->
 <div id="grid-canvas"></div>
 <div class="grain"></div>
 
-<!-- NAV -->
+<!-- ══════════════ NAV ══════════════ -->
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="#" onclick="scrollTo(0,0);return false;">
       <div class="nav-logo-icon">M</div>
       <span class="nav-logo-text">MedSchoolPrep</span>
     </a>
+
     <div class="nav-links" id="navLinks">
       <a href="#features">Features</a>
-      <a href="#specialty">Your Path</a>
       <a href="#quizzes">Quiz Library</a>
       <a href="#methodology">Methodology</a>
       <a href="#">Pricing</a>
     </div>
+
     <div class="nav-actions nav-desktop-btns">
       <button onclick="openAuth('login')" style="font-size:13px;font-weight:600;color:rgba(255,255,255,.6);background:none;border:none;cursor:pointer;padding:8px 12px;transition:color .2s;font-family:'Inter',sans-serif;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Sign In</button>
       <button onclick="openAuth('signup')" class="btn-blue" style="font-size:13px;padding:9px 20px;">Get Started Free</button>
     </div>
+
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -287,7 +401,6 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
 <!-- MOBILE DRAWER -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#features" onclick="closeMenu()">Features</a>
-  <a href="#specialty" onclick="closeMenu()">Your Path</a>
   <a href="#quizzes" onclick="closeMenu()">Quiz Library</a>
   <a href="#methodology" onclick="closeMenu()">Methodology</a>
   <a href="#" onclick="closeMenu()">Pricing</a>
@@ -297,7 +410,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </div>
 
-<!-- HERO -->
+<!-- ══════════════ HERO ══════════════ -->
 <section class="hero-wrap sp" style="position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 24px 80px;overflow:hidden;text-align:center;">
   <div class="ray-hero"></div>
   <div class="hero-glows">
@@ -324,10 +437,15 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </p>
 
   <div class="reveal hero-ctas" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:64px;transition-delay:.3s;width:100%;max-width:420px;">
-    <button onclick="openAuth('signup')" class="btn-primary" style="font-size:16px;padding:15px 32px;flex:1;min-width:148px;">Start for Free</button>
-    <button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" class="btn-outline" style="font-size:16px;padding:15px 32px;flex:1;min-width:148px;">Explore Features</button>
+    <button onclick="openAuth('signup')" class="btn-primary" style="font-size:16px;padding:15px 32px;flex:1;min-width:148px;">
+      Start for Free
+    </button>
+    <button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" class="btn-outline" style="font-size:16px;padding:15px 32px;flex:1;min-width:148px;">
+      Explore Features
+    </button>
   </div>
 
+  <!-- 3D Mockup -->
   <div class="reveal mockup-wrap" style="width:100%;max-width:1000px;transition-delay:.45s;" id="mockupWrap">
     <div class="mockup-3d" id="mockup3d">
       <div style="height:42px;background:rgba(0,0,0,.6);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 14px;justify-content:space-between;">
@@ -340,6 +458,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         <div style="width:36px;"></div>
       </div>
       <div class="mockup-inner" style="display:flex;height:460px;background:#030014;">
+        <!-- Sidebar: hidden mobile via CSS -->
         <div class="mockup-sidebar" style="width:230px;border-right:1px solid rgba(255,255,255,.05);background:rgba(0,0,0,.3);padding:22px 14px;flex-shrink:0;">
           <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px;">Navigation</div>
           <div style="display:flex;flex-direction:column;gap:4px;">
@@ -359,6 +478,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
             <div class="prog-bar"><div class="prog-fill" style="width:71%;background:linear-gradient(90deg,#10b981,#06b6d4);"></div></div>
           </div>
         </div>
+        <!-- Main -->
         <div style="flex:1;padding:24px;overflow:hidden;min-width:0;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
             <div>
@@ -394,7 +514,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- STATS -->
+<!-- ══════════════ STATS ══════════════ -->
 <section class="sp" style="padding:0 24px 72px;">
   <div style="max-width:1000px;margin:0 auto;">
     <div class="reveal stats-grid" style="display:grid;grid-template-columns:repeat(3,1fr);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.06);">
@@ -414,7 +534,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- MARQUEE -->
+<!-- ══════════════ MARQUEE ══════════════ -->
 <section style="padding:0 0 84px;overflow:hidden;position:relative;">
   <div style="position:absolute;left:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,#030014,transparent);z-index:2;pointer-events:none;"></div>
   <div style="position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to left,#030014,transparent);z-index:2;pointer-events:none;"></div>
@@ -424,7 +544,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- FEATURES BENTO -->
+<!-- ══════════════ FEATURES BENTO ══════════════ -->
 <section id="features" class="sp" style="padding:0 24px 96px;">
   <div style="max-width:1280px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:60px;">
@@ -432,7 +552,9 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
       <h2 style="font-size:clamp(30px,5vw,68px);font-weight:900;letter-spacing:-.04em;line-height:.95;margin-bottom:18px;">Built for the<br/><span class="grad-blue">modern premed.</span></h2>
       <p style="font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,.4);max-width:480px;margin:0 auto;font-weight:400;line-height:1.6;padding:0 4px;">Every tool you need to get into your dream medical school, in one synchronized workspace.</p>
     </div>
+
     <div class="bento-grid">
+      <!-- Card 1 — Mastery Engine LARGE -->
       <div class="card reveal col-8" style="padding:clamp(24px,4vw,48px);min-height:340px;position:relative;overflow:hidden;transition-delay:.05s;">
         <div style="position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.1) 0%,transparent 70%);pointer-events:none;"></div>
         <div style="max-width:380px;position:relative;z-index:1;">
@@ -448,12 +570,19 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         <div class="mini-float" style="position:absolute;right:28px;bottom:28px;width:200px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;transform:rotate(-3deg);transition:transform .5s;" onmouseover="this.style.transform='rotate(0)'" onmouseout="this.style.transform='rotate(-3deg)'">
           <div style="font-size:10px;color:rgba(255,255,255,.3);margin-bottom:10px;font-weight:600;letter-spacing:.06em;">PERFORMANCE TODAY</div>
           <div style="display:flex;flex-direction:column;gap:7px;">
-            <div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px;"><span style="color:rgba(255,255,255,.6);">Glycolysis</span><span style="color:#34d399;font-weight:700;">+18%</span></div><div class="prog-bar"><div class="prog-fill" style="width:82%;background:linear-gradient(90deg,#3b82f6,#6366f1);"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px;"><span style="color:rgba(255,255,255,.6);">Acid-Base</span><span style="color:#f59e0b;font-weight:700;">+7%</span></div><div class="prog-bar"><div class="prog-fill" style="width:56%;background:linear-gradient(90deg,#f59e0b,#ef4444);"></div></div></div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px;"><span style="color:rgba(255,255,255,.6);">Glycolysis</span><span style="color:#34d399;font-weight:700;">+18%</span></div>
+              <div class="prog-bar"><div class="prog-fill" style="width:82%;background:linear-gradient(90deg,#3b82f6,#6366f1);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px;"><span style="color:rgba(255,255,255,.6);">Acid-Base</span><span style="color:#f59e0b;font-weight:700;">+7%</span></div>
+              <div class="prog-bar"><div class="prog-fill" style="width:56%;background:linear-gradient(90deg,#f59e0b,#ef4444);"></div></div>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- Card 2 — AI Coach -->
       <div class="card reveal col-4" style="padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;justify-content:space-between;transition-delay:.1s;">
         <div>
           <div class="feat-icon" style="background:rgba(16,185,129,.1);color:#10b981;margin-bottom:18px;">💬</div>
@@ -467,6 +596,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         </div>
       </div>
 
+      <!-- Card 3 — Quiz Library -->
       <div class="card reveal col-4" style="padding:clamp(22px,3vw,36px);transition-delay:.15s;">
         <div class="feat-icon" style="background:rgba(139,92,246,.1);color:#a78bfa;margin-bottom:18px;">📚</div>
         <h3 style="font-size:clamp(18px,2.5vw,22px);font-weight:900;margin-bottom:9px;letter-spacing:-.03em;">Quiz Library</h3>
@@ -479,6 +609,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         </div>
       </div>
 
+      <!-- Card 4 — AMCAS Vault -->
       <div class="card reveal col-4" style="padding:clamp(22px,3vw,36px);transition-delay:.2s;">
         <div class="feat-icon" style="background:rgba(249,115,22,.1);color:#fb923c;margin-bottom:18px;">📋</div>
         <h3 style="font-size:clamp(18px,2.5vw,22px);font-weight:900;margin-bottom:9px;letter-spacing:-.03em;">AMCAS Vault</h3>
@@ -486,6 +617,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         <div style="border:1px dashed rgba(255,255,255,.1);border-radius:11px;padding:14px;text-align:center;font-size:10.5px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:.08em;text-transform:uppercase;">Drop CSV to Import ↑</div>
       </div>
 
+      <!-- Card 5 — Smart Planner -->
       <div class="card reveal col-4" style="padding:clamp(22px,3vw,36px);transition-delay:.25s;">
         <div class="feat-icon" style="background:rgba(6,182,212,.1);color:#22d3ee;margin-bottom:18px;">📅</div>
         <h3 style="font-size:clamp(18px,2.5vw,22px);font-weight:900;margin-bottom:9px;letter-spacing:-.03em;">Smart Planner</h3>
@@ -497,6 +629,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         </div>
       </div>
 
+      <!-- Card 6 — Analytics LARGE -->
       <div class="card reveal col-8" style="padding:clamp(24px,4vw,48px);min-height:260px;position:relative;overflow:hidden;transition-delay:.3s;">
         <div style="position:absolute;bottom:-40px;right:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.08) 0%,transparent 70%);pointer-events:none;"></div>
         <div style="max-width:380px;position:relative;z-index:1;">
@@ -518,40 +651,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- ══════════════ SPECIALTY DIAGNOSTIC ══════════════ -->
-<section id="specialty" class="diag-section sp">
-  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
-    <div class="diag-bg"></div>
-
-    <div class="reveal" style="text-align:center;margin-bottom:48px;">
-      <div class="sec-label">Find Your Path</div>
-      <h2 style="font-size:clamp(28px,5vw,64px);font-weight:900;letter-spacing:-.04em;line-height:.95;margin-bottom:16px;">What kind of doctor<br/><span style="background:linear-gradient(135deg,#a78bfa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">do you want to be?</span></h2>
-      <p style="font-size:clamp(13.5px,1.8vw,17px);color:rgba(255,255,255,.4);max-width:500px;margin:0 auto;line-height:1.65;padding:0 4px;">Select a specialty and we'll show you a personalized curriculum roadmap — and save your path so your workspace is ready when you sign up.</p>
-    </div>
-
-    <div class="specialty-grid reveal" id="specialtyGrid"></div>
-
-    <div class="curriculum-panel" id="curriculumPanel">
-      <div class="curr-header">
-        <div>
-          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(99,102,241,.7);margin-bottom:4px;">Your Curriculum Path</div>
-          <div style="font-size:18px;font-weight:800;" id="currTitle">Surgery Track</div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:4px;">Estimated prep time</div>
-          <div style="font-size:16px;font-weight:700;color:#a78bfa;" id="currTime">9–12 months</div>
-        </div>
-      </div>
-      <div class="curr-body" id="currBody"></div>
-      <div style="padding:0 24px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-        <button class="save-path-btn" onclick="savePath()">Save This Path & Get Started →</button>
-        <div id="pathSavedMsg" style="display:none;font-size:13px;color:#34d399;font-weight:600;">✓ Path saved! We'll load this when you sign in.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
 <section id="methodology" class="sp" style="padding:0 24px 96px;">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:60px;">
@@ -579,7 +679,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- QUIZ PREVIEW -->
+<!-- ══════════════ QUIZ PREVIEW ══════════════ -->
 <section id="quizzes" class="sp" style="padding:0 24px 96px;">
   <div style="max-width:1280px;margin:0 auto;">
     <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
@@ -595,6 +695,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
         </div>
         <button onclick="openAuth('signup')" class="btn-blue" style="padding:13px 28px;font-size:14px;">Access All Quizzes →</button>
       </div>
+
       <div class="reveal-right quiz-panel">
         <div style="background:rgba(8,8,20,.6);border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:24px;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
@@ -614,7 +715,7 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
 <section class="sp" style="padding:0 24px 96px;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
@@ -650,20 +751,26 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- ══════════════ FINAL CTA ══════════════ -->
 <section class="sp" style="padding:0 24px 96px;text-align:center;overflow:hidden;position:relative;">
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(59,130,246,.12) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="reveal" style="position:relative;z-index:1;">
-    <h2 style="font-size:clamp(34px,8vw,100px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin-bottom:36px;">Study smarter.<br/><span class="grad-blue">Don't work harder.</span></h2>
+    <h2 style="font-size:clamp(34px,8vw,100px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin-bottom:36px;">
+      Study smarter.<br/><span class="grad-blue">Don't work harder.</span>
+    </h2>
     <div class="final-ctas" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto;">
-      <button onclick="openAuth('signup')" class="btn-primary" style="font-size:17px;padding:16px 36px;flex:1;min-width:148px;">Open Your Workspace</button>
-      <button onclick="openAuth('login')" class="btn-outline" style="font-size:17px;padding:16px 36px;flex:1;min-width:148px;">Sign In</button>
+      <button onclick="openAuth('signup')" class="btn-primary" style="font-size:17px;padding:16px 36px;flex:1;min-width:148px;">
+        Open Your Workspace
+      </button>
+      <button onclick="openAuth('login')" class="btn-outline" style="font-size:17px;padding:16px 36px;flex:1;min-width:148px;">
+        Sign In
+      </button>
     </div>
     <p style="color:rgba(255,255,255,.3);font-size:13px;font-weight:500;">Free forever. No credit card required. Join 20,000+ premeds.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════════ FOOTER ══════════════ -->
 <footer style="border-top:1px solid rgba(255,255,255,.05);padding:44px 24px 32px;">
   <div style="max-width:1280px;margin:0 auto;">
     <div class="footer-top" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:44px;">
@@ -705,10 +812,11 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
   </div>
 </footer>
 
-<!-- AUTH MODAL (fully preserved) -->
+<!-- ══════════════ AUTH MODAL ══════════════ -->
 <div class="modal-bg" id="authModal">
   <div class="modal-box" onclick="event.stopPropagation()">
     <button onclick="closeAuth()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.07);border:none;color:rgba(255,255,255,.5);cursor:pointer;width:30px;height:30px;border-radius:8px;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.background='rgba(255,255,255,0.12)';this.style.color='white'" onmouseout="this.style.background='rgba(255,255,255,0.07)';this.style.color='rgba(255,255,255,.5)'">✕</button>
+
     <div style="width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#3b82f6,#6366f1);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;color:white;margin-bottom:24px;box-shadow:0 0 36px rgba(59,130,246,.4);">M</div>
 
     <div id="loginView">
@@ -760,79 +868,129 @@ nav{position:fixed;width:100%;top:0;z-index:300;border-bottom:1px solid rgba(255
 </div>
 
 <script>
-/* ══ CURSOR GLOW ══ */
+/* ══════════════════════════════════
+   CURSOR GLOW — smooth lerp, desktop only
+══════════════════════════════════ */
 (function(){
-  const glow=document.getElementById('cursor-glow');
-  const isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
-  if(isTouch){glow.style.display='none';return;}
-  let tx=window.innerWidth/2,ty=window.innerHeight/2,cx=tx,cy=ty;
-  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
-  document.addEventListener('mouseleave',()=>{glow.style.opacity='0';});
-  document.addEventListener('mouseenter',()=>{glow.style.opacity='1';});
-  (function loop(){cx+=(tx-cx)*0.1;cy+=(ty-cy)*0.1;glow.style.left=cx+'px';glow.style.top=cy+'px';requestAnimationFrame(loop);})();
+  const glow = document.getElementById('cursor-glow');
+  // Kill immediately on touch devices
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(isTouch){ glow.style.display='none'; return; }
+
+  let tx=window.innerWidth/2, ty=window.innerHeight/2;
+  let cx=tx, cy=ty;
+
+  document.addEventListener('mousemove', e=>{ tx=e.clientX; ty=e.clientY; });
+  document.addEventListener('mouseleave', ()=>{ glow.style.opacity='0'; });
+  document.addEventListener('mouseenter', ()=>{ glow.style.opacity='1'; });
+
+  (function loop(){
+    cx += (tx-cx)*0.1;
+    cy += (ty-cy)*0.1;
+    glow.style.left = cx+'px';
+    glow.style.top  = cy+'px';
+    requestAnimationFrame(loop);
+  })();
 })();
 
-/* ══ GRID CANVAS ══ */
-const gridEl=document.getElementById('grid-canvas');
+/* ══════════════════════════════════
+   GRID CANVAS TRACKING
+══════════════════════════════════ */
+const gridEl = document.getElementById('grid-canvas');
 let gRaf;
-document.addEventListener('mousemove',e=>{
+document.addEventListener('mousemove', e=>{
   cancelAnimationFrame(gRaf);
-  gRaf=requestAnimationFrame(()=>{
+  gRaf = requestAnimationFrame(()=>{
     gridEl.style.setProperty('--mx',(e.clientX/window.innerWidth*100).toFixed(1)+'%');
     gridEl.style.setProperty('--my',(e.clientY/window.innerHeight*100).toFixed(1)+'%');
   });
 });
 
-/* ══ 3D MOCKUP TILT ══ */
+/* ══════════════════════════════════
+   3D MOCKUP TILT — desktop only
+══════════════════════════════════ */
 (function(){
-  const isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
-  if(isTouch)return;
-  const m=document.getElementById('mockup3d');
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(isTouch) return;
+  const m = document.getElementById('mockup3d');
   let rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    rx+=((window.innerWidth/2-e.clientX)/70-rx)*0.08;
-    ry+=((e.clientY-window.innerHeight/2)/70-ry)*0.08;
+  document.addEventListener('mousemove', e=>{
+    rx += (((window.innerWidth/2 - e.clientX)/70) - rx)*0.08;
+    ry += (((e.clientY - window.innerHeight/2)/70) - ry)*0.08;
   });
-  (function tilt(){m.style.transform=`rotateY(${rx.toFixed(2)}deg) rotateX(${(-ry).toFixed(2)}deg)`;requestAnimationFrame(tilt);})();
+  (function tilt(){
+    m.style.transform=`rotateY(${rx.toFixed(2)}deg) rotateX(${(-ry).toFixed(2)}deg)`;
+    requestAnimationFrame(tilt);
+  })();
 })();
 
-/* ══ MOBILE MENU ══ */
+/* ══════════════════════════════════
+   MOBILE MENU
+══════════════════════════════════ */
 function toggleMenu(){
-  const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  const b=document.getElementById('hamburger');
   const open=m.classList.toggle('open');
   b.classList.toggle('open',open);
-  document.body.style.overflow=open?'hidden':'';
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 function closeMenu(){
   document.getElementById('mobileMenu').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('click',e=>{
-  const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');
-  if(m.classList.contains('open')&&!m.contains(e.target)&&!b.contains(e.target))closeMenu();
+// Close on outside tap
+document.addEventListener('click', e=>{
+  const m=document.getElementById('mobileMenu');
+  const b=document.getElementById('hamburger');
+  if(m.classList.contains('open') && !m.contains(e.target) && !b.contains(e.target)) closeMenu();
 });
 
-/* ══ SCROLL REVEAL ══ */
-const ro=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.07});
+/* ══════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════ */
+const ro = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{ threshold:0.07 });
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>ro.observe(el));
 
-/* ══ NAV RESPONSIVE ══ */
-function setNav(){document.getElementById('navLinks').style.display=window.innerWidth>768?'flex':'none';}
-setNav();window.addEventListener('resize',setNav);
+/* ══════════════════════════════════
+   NAV RESPONSIVE
+══════════════════════════════════ */
+function setNav(){
+  const show = window.innerWidth > 768;
+  document.getElementById('navLinks').style.display = show ? 'flex' : 'none';
+}
+setNav();
+window.addEventListener('resize', setNav);
 
-/* ══ MARQUEE ══ */
+/* ══════════════════════════════════
+   MARQUEE
+══════════════════════════════════ */
 const topics=['Glycolysis','Acid-Base Eq.','Newton\'s Laws','Cori Cycle','CARS Strategy','Stereochemistry','Nerve Impulse','MMI Prep','Krebs Cycle','Hardy-Weinberg','Electrochemistry','Protein Folding','Social Influence','Fluid Dynamics','DNA Replication','Cognitive Bias','Thermodynamics','Enzyme Kinetics','Memory Systems','AMCAS Essays','Organic Rxns','Cell Signaling','Hess\'s Law','Operant Cond.'];
-const mc=[['rgba(59,130,246,.12)','rgba(59,130,246,.28)','#93c5fd'],['rgba(16,185,129,.1)','rgba(16,185,129,.25)','#6ee7b7'],['rgba(139,92,246,.1)','rgba(139,92,246,.25)','#c4b5fd'],['rgba(249,115,22,.1)','rgba(249,115,22,.25)','#fb923c'],['rgba(6,182,212,.1)','rgba(6,182,212,.25)','#67e8f9']];
+const mc=[
+  ['rgba(59,130,246,.12)','rgba(59,130,246,.28)','#93c5fd'],
+  ['rgba(16,185,129,.1)','rgba(16,185,129,.25)','#6ee7b7'],
+  ['rgba(139,92,246,.1)','rgba(139,92,246,.25)','#c4b5fd'],
+  ['rgba(249,115,22,.1)','rgba(249,115,22,.25)','#fb923c'],
+  ['rgba(6,182,212,.1)','rgba(6,182,212,.25)','#67e8f9'],
+];
 function buildMarquee(id){
   const el=document.getElementById(id);
-  topics.forEach((t,i)=>{const c=mc[i%mc.length];const d=document.createElement('div');d.style.cssText=`padding:7px 16px;border-radius:100px;border:1px solid ${c[1]};background:${c[0]};font-size:12.5px;font-weight:600;color:${c[2]};white-space:nowrap;`;d.textContent=t;el.appendChild(d);});
+  topics.forEach((t,i)=>{
+    const c=mc[i%mc.length];
+    const d=document.createElement('div');
+    d.style.cssText=`padding:7px 16px;border-radius:100px;border:1px solid ${c[1]};background:${c[0]};font-size:12.5px;font-weight:600;color:${c[2]};white-space:nowrap;`;
+    d.textContent=t;
+    el.appendChild(d);
+  });
 }
-buildMarquee('marq1');buildMarquee('marq2');
+buildMarquee('marq1');
+buildMarquee('marq2');
 
-/* ══ QUIZ LIST ══ */
+/* ══════════════════════════════════
+   QUIZ LIST
+══════════════════════════════════ */
 const qs=[
   {title:'Glycolysis & Regulation',cat:'Bio/Biochem',diff:'Hard',n:15,score:null},
   {title:'Acid-Base Equilibria',cat:'Chem/Phys',diff:'Hard',n:15,score:84},
@@ -847,10 +1005,19 @@ qs.forEach(q=>{
   d.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:11px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);gap:10px;transition:background .2s,border-color .2s;cursor:pointer;';
   d.onmouseover=()=>{d.style.background='rgba(59,130,246,0.08)';d.style.borderColor='rgba(59,130,246,0.2)';};
   d.onmouseout=()=>{d.style.background='rgba(255,255,255,0.03)';d.style.borderColor='rgba(255,255,255,0.06)';};
+  // touch feedback
   d.addEventListener('touchstart',()=>{d.style.background='rgba(59,130,246,0.08)';},{passive:true});
   d.addEventListener('touchend',()=>{setTimeout(()=>{d.style.background='rgba(255,255,255,0.03)';},220);},{passive:true});
   const s=ds[q.diff];
-  d.innerHTML=`<div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:700;color:white;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${q.title}</div><div style="font-size:10.5px;color:rgba(255,255,255,.3);margin-top:2px;">${q.cat} · ${q.n} questions</div></div><div style="display:flex;align-items:center;gap:7px;flex-shrink:0;"><span style="padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700;background:${s.bg};color:${s.c};">${q.diff}</span>${q.score?`<span style="font-size:12px;font-weight:700;color:#34d399;">${q.score}%</span>`:`<button onclick="openAuth('signup')" style="padding:5px 12px;border-radius:20px;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.3);color:#93c5fd;font-size:10.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">Start</button>`}</div>`;
+  d.innerHTML=`
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:13px;font-weight:700;color:white;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${q.title}</div>
+      <div style="font-size:10.5px;color:rgba(255,255,255,.3);margin-top:2px;">${q.cat} · ${q.n} questions</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;flex-shrink:0;">
+      <span style="padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700;background:${s.bg};color:${s.c};">${q.diff}</span>
+      ${q.score?`<span style="font-size:12px;font-weight:700;color:#34d399;">${q.score}%</span>`:`<button onclick="openAuth('signup')" style="padding:5px 12px;border-radius:20px;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.3);color:#93c5fd;font-size:10.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">Start</button>`}
+    </div>`;
   ql.appendChild(d);
 });
 document.querySelectorAll('.cat-pill').forEach(p=>{
@@ -860,153 +1027,52 @@ document.querySelectorAll('.cat-pill').forEach(p=>{
   });
 });
 
-/* ══════════════════════════════════════════════════
-   SPECIALTY DIAGNOSTIC — localStorage bridge
-══════════════════════════════════════════════════ */
-const SPECIALTIES=[
-  {id:'surgery',emoji:'🔪',name:'Surgery',time:'9–12 months',units:[
-    {label:'Unit 1',title:'Anatomy Foundations',lessons:[{name:'Gross Anatomy',dot:'#6366f1',pct:0},{name:'Surgical Anatomy',dot:'#818cf8',pct:0},{name:'Embryology',dot:'#a78bfa',pct:0}]},
-    {label:'Unit 2',title:'Physiology & Pathology',lessons:[{name:'Hemodynamics',dot:'#6366f1',pct:35},{name:'Wound Healing',dot:'#818cf8',pct:20},{name:'Shock & Trauma',dot:'#a78bfa',pct:0}]},
-    {label:'Unit 3',title:'Clinical Correlates',lessons:[{name:'Periop Care',dot:'#6366f1',pct:0},{name:'Surgical Ethics',dot:'#818cf8',pct:0},{name:'Case Studies',dot:'#a78bfa',pct:0}]},
-  ]},
-  {id:'internal',emoji:'🫀',name:'Internal Med',time:'12–16 months',units:[
-    {label:'Unit 1',title:'Cardiology Core',lessons:[{name:'ECG Interpretation',dot:'#3b82f6',pct:45},{name:'Heart Failure',dot:'#60a5fa',pct:30},{name:'Arrhythmias',dot:'#93c5fd',pct:0}]},
-    {label:'Unit 2',title:'Endocrinology',lessons:[{name:'Diabetes & Insulin',dot:'#3b82f6',pct:0},{name:'Thyroid Disorders',dot:'#60a5fa',pct:0},{name:'Adrenal Axis',dot:'#93c5fd',pct:0}]},
-    {label:'Unit 3',title:'Pulmonology',lessons:[{name:'Obstructive Lung Dz',dot:'#3b82f6',pct:0},{name:'Restrictive Patterns',dot:'#60a5fa',pct:0},{name:'ABG Analysis',dot:'#93c5fd',pct:0}]},
-  ]},
-  {id:'pediatrics',emoji:'👶',name:'Pediatrics',time:'10–14 months',units:[
-    {label:'Unit 1',title:'Growth & Development',lessons:[{name:'Developmental Milestones',dot:'#10b981',pct:60},{name:'Vaccination Schedule',dot:'#34d399',pct:40},{name:'Neonatal Care',dot:'#6ee7b7',pct:0}]},
-    {label:'Unit 2',title:'Pediatric Pathology',lessons:[{name:'Fever Workup',dot:'#10b981',pct:20},{name:'Genetic Disorders',dot:'#34d399',pct:0},{name:'Congenital Defects',dot:'#6ee7b7',pct:0}]},
-    {label:'Unit 3',title:'Behavioral Health',lessons:[{name:'ADHD & Autism',dot:'#10b981',pct:0},{name:'Child Psychology',dot:'#34d399',pct:0},{name:'Abuse Recognition',dot:'#6ee7b7',pct:0}]},
-  ]},
-  {id:'psychiatry',emoji:'🧠',name:'Psychiatry',time:'8–11 months',units:[
-    {label:'Unit 1',title:'Diagnostic Foundations',lessons:[{name:'DSM-5 Categories',dot:'#8b5cf6',pct:50},{name:'Mood Disorders',dot:'#a78bfa',pct:35},{name:'Psychosis',dot:'#c4b5fd',pct:0}]},
-    {label:'Unit 2',title:'Neuropharmacology',lessons:[{name:'Antidepressants',dot:'#8b5cf6',pct:0},{name:'Antipsychotics',dot:'#a78bfa',pct:0},{name:'Anxiolytics',dot:'#c4b5fd',pct:0}]},
-    {label:'Unit 3',title:'Therapy & Ethics',lessons:[{name:'CBT Principles',dot:'#8b5cf6',pct:0},{name:'Informed Consent',dot:'#a78bfa',pct:0},{name:'Forensic Psych',dot:'#c4b5fd',pct:0}]},
-  ]},
-  {id:'emergency',emoji:'🚨',name:'Emergency Med',time:'9–12 months',units:[
-    {label:'Unit 1',title:'Critical Interventions',lessons:[{name:'ACLS Algorithms',dot:'#ef4444',pct:70},{name:'Airway Management',dot:'#f87171',pct:40},{name:'Trauma Primary Survey',dot:'#fca5a5',pct:20}]},
-    {label:'Unit 2',title:'Toxicology',lessons:[{name:'Common Overdoses',dot:'#ef4444',pct:0},{name:'Antidotes',dot:'#f87171',pct:0},{name:'Environmental Toxins',dot:'#fca5a5',pct:0}]},
-    {label:'Unit 3',title:'Procedural Skills',lessons:[{name:'IV Access & Lines',dot:'#ef4444',pct:0},{name:'Wound Management',dot:'#f87171',pct:0},{name:'Point-of-Care US',dot:'#fca5a5',pct:0}]},
-  ]},
-  {id:'obgyn',emoji:'🌸',name:'OB/GYN',time:'10–13 months',units:[
-    {label:'Unit 1',title:'Obstetrics',lessons:[{name:'Normal Pregnancy',dot:'#ec4899',pct:30},{name:'Labor & Delivery',dot:'#f472b6',pct:0},{name:'Fetal Monitoring',dot:'#f9a8d4',pct:0}]},
-    {label:'Unit 2',title:'Gynecology',lessons:[{name:'Menstrual Disorders',dot:'#ec4899',pct:0},{name:'Reproductive Endocrinology',dot:'#f472b6',pct:0},{name:'Gyn Oncology',dot:'#f9a8d4',pct:0}]},
-    {label:'Unit 3',title:'Complications',lessons:[{name:'Preeclampsia',dot:'#ec4899',pct:0},{name:'Ectopic Pregnancy',dot:'#f472b6',pct:0},{name:'Postpartum Care',dot:'#f9a8d4',pct:0}]},
-  ]},
-  {id:'neurology',emoji:'🧬',name:'Neurology',time:'11–15 months',units:[
-    {label:'Unit 1',title:'Neuroanatomy',lessons:[{name:'CNS Pathways',dot:'#06b6d4',pct:55},{name:'Spinal Cord',dot:'#22d3ee',pct:30},{name:'Cranial Nerves',dot:'#67e8f9',pct:10}]},
-    {label:'Unit 2',title:'Clinical Neurology',lessons:[{name:'Stroke & TIA',dot:'#06b6d4',pct:0},{name:'Epilepsy',dot:'#22d3ee',pct:0},{name:'Dementia Syndromes',dot:'#67e8f9',pct:0}]},
-    {label:'Unit 3',title:'Neuropharmacology',lessons:[{name:'Antiepileptics',dot:'#06b6d4',pct:0},{name:'Parkinson\'s Drugs',dot:'#22d3ee',pct:0},{name:'Migraine Tx',dot:'#67e8f9',pct:0}]},
-  ]},
-  {id:'radiology',emoji:'🔬',name:'Radiology',time:'10–14 months',units:[
-    {label:'Unit 1',title:'Imaging Physics',lessons:[{name:'X-Ray Principles',dot:'#f59e0b',pct:40},{name:'CT & MRI Physics',dot:'#fbbf24',pct:25},{name:'Ultrasound',dot:'#fcd34d',pct:0}]},
-    {label:'Unit 2',title:'Systematic Reading',lessons:[{name:'Chest X-Ray',dot:'#f59e0b',pct:20},{name:'Abdominal CT',dot:'#fbbf24',pct:0},{name:'Neuro Imaging',dot:'#fcd34d',pct:0}]},
-    {label:'Unit 3',title:'Interventional Rad',lessons:[{name:'Vascular Procedures',dot:'#f59e0b',pct:0},{name:'Biopsy Techniques',dot:'#fbbf24',pct:0},{name:'Contrast Protocols',dot:'#fcd34d',pct:0}]},
-  ]},
-];
-
-let selectedSpecialty=null;
-
-// Load previously saved path
-const savedPath=localStorage.getItem('msp_user_path');
-
-function buildSpecialtyGrid(){
-  const grid=document.getElementById('specialtyGrid');
-  SPECIALTIES.forEach(s=>{
-    const card=document.createElement('div');
-    card.className='spec-card'+(savedPath===s.id?' selected':'');
-    card.dataset.id=s.id;
-    card.innerHTML=`<div class="spec-emoji">${s.emoji}</div><div class="spec-name">${s.name}</div>`;
-    card.addEventListener('click',()=>selectSpecialty(s.id));
-    grid.appendChild(card);
+/* ══════════════════════════════════
+   AUTH SYSTEM
+══════════════════════════════════ */
+function hashPw(s){
+  let h=5381;
+  for(let i=0;i<s.length;i++) h=((h<<5)+h)+s.charCodeAt(i)|0;
+  return (h>>>0).toString(16);
+}
+function openAuth(view){
+  document.getElementById('authModal').classList.add('open');
+  document.body.style.overflow='hidden';
+  switchView(view);
+}
+function closeAuth(){
+  document.getElementById('authModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('authModal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('authModal')) closeAuth();
+});
+function switchView(v){
+  ['loginView','signupView','forgotView'].forEach(id=>{
+    document.getElementById(id).style.display='none';
   });
-  // Auto-open saved path
-  if(savedPath){
-    const match=SPECIALTIES.find(s=>s.id===savedPath);
-    if(match){selectedSpecialty=savedPath;renderCurriculum(match);openPanel();}
-  }
+  document.getElementById(v+'View').style.display='block';
+  clearErrors();
 }
-
-function selectSpecialty(id){
-  document.querySelectorAll('.spec-card').forEach(c=>c.classList.remove('selected'));
-  document.querySelector(`.spec-card[data-id="${id}"]`).classList.add('selected');
-  const spec=SPECIALTIES.find(s=>s.id===id);
-  selectedSpecialty=id;
-  document.getElementById('pathSavedMsg').style.display='none';
-  renderCurriculum(spec);
-  openPanel();
-}
-
-function openPanel(){
-  const panel=document.getElementById('curriculumPanel');
-  panel.classList.add('open');
-  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-  // Trigger mastery bar animations after transition
-  setTimeout(()=>{
-    document.querySelectorAll('.mastery-fill').forEach(f=>{
-      f.style.width=f.dataset.pct+'%';
-    });
-  },200);
-}
-
-function renderCurriculum(spec){
-  document.getElementById('currTitle').textContent=spec.name+' Track';
-  document.getElementById('currTime').textContent=spec.time;
-  const body=document.getElementById('currBody');
-  body.innerHTML='';
-  spec.units.forEach(u=>{
-    const card=document.createElement('div');
-    card.className='unit-card';
-    const lessonsHtml=u.lessons.map(l=>`
-      <div class="lesson-row">
-        <div class="lesson-dot" style="background:${l.dot};"></div>
-        <div class="lesson-name" style="flex:1;">${l.name}</div>
-        ${l.pct>0?`<div style="font-size:10px;color:${l.dot};font-weight:700;">${l.pct}%</div>`:''}
-      </div>
-    `).join('');
-    const avgPct=Math.round(u.lessons.reduce((a,l)=>a+l.pct,0)/u.lessons.length);
-    card.innerHTML=`
-      <div class="unit-label">${u.label}</div>
-      <div class="unit-title">${u.title}</div>
-      <div class="unit-lessons">${lessonsHtml}</div>
-      <div class="mastery-bar"><div class="mastery-fill" data-pct="${avgPct}" style="width:0%;"></div></div>
-      <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:5px;">${avgPct>0?avgPct+'% started':'Not started'}</div>
-    `;
-    body.appendChild(card);
-  });
-}
-
-function savePath(){
-  if(!selectedSpecialty)return;
-  localStorage.setItem('msp_user_path',selectedSpecialty);
-  const msg=document.getElementById('pathSavedMsg');
-  msg.style.display='block';
-  // Prompt to sign up after a beat
-  setTimeout(()=>openAuth('signup'),1800);
-}
-
-buildSpecialtyGrid();
-
-/* ══ AUTH SYSTEM (fully preserved) ══ */
-function hashPw(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h)+s.charCodeAt(i)|0;return(h>>>0).toString(16);}
-function openAuth(view){document.getElementById('authModal').classList.add('open');document.body.style.overflow='hidden';switchView(view);}
-function closeAuth(){document.getElementById('authModal').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('authModal').addEventListener('click',e=>{if(e.target===document.getElementById('authModal'))closeAuth();});
-function switchView(v){['loginView','signupView','forgotView'].forEach(id=>{document.getElementById(id).style.display='none';});document.getElementById(v+'View').style.display='block';clearErrors();}
 function showErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';}
-function clearErrors(){['loginErr','signupErr','forgotErr','signupOk'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent='';el.style.display='none';}});}
+function clearErrors(){
+  ['loginErr','signupErr','forgotErr','signupOk'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.textContent='';el.style.display='none';}
+  });
+}
 function doLogin(){
   clearErrors();
   const email=document.getElementById('loginEmail').value.trim().toLowerCase();
   const pass=document.getElementById('loginPass').value;
-  if(!email.includes('@'))return showErr('loginErr','Please enter a valid email address.');
-  if(!pass)return showErr('loginErr','Please enter your password.');
+  if(!email.includes('@')) return showErr('loginErr','Please enter a valid email address.');
+  if(!pass) return showErr('loginErr','Please enter your password.');
   const users=JSON.parse(localStorage.getItem('msp_users')||'{}');
   const user=users[email];
-  if(!user||user.hash!==hashPw(pass))return showErr('loginErr','Incorrect email or password.');
+  if(!user||user.hash!==hashPw(pass)) return showErr('loginErr','Incorrect email or password.');
   localStorage.setItem('msp_session',JSON.stringify({email,name:user.name,at:Date.now()}));
-  closeAuth();window.location.reload();
+  closeAuth();
+  window.location.reload();
 }
 function doSignup(){
   clearErrors();
@@ -1014,42 +1080,121 @@ function doSignup(){
   const email=document.getElementById('signupEmail').value.trim().toLowerCase();
   const pass=document.getElementById('signupPass').value;
   const pass2=document.getElementById('signupPass2').value;
-  if(!name)return showErr('signupErr','Please enter your full name.');
-  if(!email.includes('@'))return showErr('signupErr','Please enter a valid email address.');
-  if(pass.length<6)return showErr('signupErr','Password must be at least 6 characters.');
-  if(pass!==pass2)return showErr('signupErr',"Passwords don't match.");
+  if(!name) return showErr('signupErr','Please enter your full name.');
+  if(!email.includes('@')) return showErr('signupErr','Please enter a valid email address.');
+  if(pass.length<6) return showErr('signupErr','Password must be at least 6 characters.');
+  if(pass!==pass2) return showErr('signupErr',"Passwords don't match.");
   const users=JSON.parse(localStorage.getItem('msp_users')||'{}');
-  if(users[email])return showErr('signupErr','An account with this email already exists.');
-  users[email]={name,hash:hashPw(pass),created:Date.now(),path:localStorage.getItem('msp_user_path')||null};
+  if(users[email]) return showErr('signupErr','An account with this email already exists.');
+  users[email]={name,hash:hashPw(pass),created:Date.now()};
   localStorage.setItem('msp_users',JSON.stringify(users));
   localStorage.setItem('msp_session',JSON.stringify({email,name,at:Date.now()}));
   document.getElementById('signupOk').textContent=`Welcome, ${name}! Account created. Redirecting...`;
   document.getElementById('signupOk').style.display='block';
   setTimeout(()=>{closeAuth();window.location.reload();},1400);
 }
-let forgotCode=null;
-function doForgot(){
+let forgotCode = null;
+
+// This version is ASYNC so it can talk to your Vercel/Gmail backend
+async function doForgot() {
   clearErrors();
-  const email=document.getElementById('forgotEmail').value.trim().toLowerCase();
-  const codeInp=document.getElementById('forgotCode').value.trim();
-  const newPass=document.getElementById('forgotNewPass').value;
-  const btn=document.getElementById('forgotBtn');
-  const sec=document.getElementById('forgotCodeSection');
-  if(!forgotCode){
-    if(!email.includes('@'))return showErr('forgotErr','Please enter a valid email address.');
-    const users=JSON.parse(localStorage.getItem('msp_users')||'{}');
-    if(!users[email])return showErr('forgotErr','No account found with this email.');
-    forgotCode=Math.floor(100000+Math.random()*900000).toString();
-    localStorage.setItem('msp_reset_'+email,JSON.stringify({code:forgotCode,exp:Date.now()+15*60*1000}));
-    sec.style.display='flex';
-    document.getElementById('forgotMsg').textContent=`Code generated (demo): ${forgotCode}`;
-    btn.textContent='Reset Password';
+  const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
+  const codeInp = document.getElementById('forgotCode').value.trim();
+  const newPass = document.getElementById('forgotNewPass').value;
+  const btn = document.getElementById('forgotBtn');
+  const sec = document.getElementById('forgotCodeSection');
+  const errEl = document.getElementById('forgotErr');
+
+  // STEP 1: Generate OTP and send via Backend
+  if (!forgotCode) {
+    if (!email.includes('@')) return showErr('forgotErr', 'Please enter a valid email address.');
+    
+    const users = JSON.parse(localStorage.getItem('msp_users') || '{}');
+    if (!users[email]) return showErr('forgotErr', 'No account found with this email.');
+
+    // Generate 6-digit OTP
+    forgotCode = Math.floor(100000 + Math.random() * 900000).toString();
+    localStorage.setItem('msp_reset_' + email, JSON.stringify({
+      code: forgotCode,
+      exp: Date.now() + 15 * 60 * 1000 // 15 min expiry
+    }));
+
+    // UI Loading State
+    btn.textContent = 'Sending OTP...';
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
+
+    try {
+      // CALL YOUR VERCEL API (api/ai.js)
+      const response = await fetch('/api/ai', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system: "You are an automated email dispatcher.",
+          message: `SEND_EMAIL_TASK: To: ${email} | Subject: MedSchoolPrep Reset Code | Body: Your code is: ${forgotCode}`
+        })
+      });
+
+      if (!response.ok) throw new Error('Failed to send');
+
+      // Success: Show the input fields
+      sec.style.display = 'flex';
+      document.getElementById('forgotMsg').textContent = `Verification code sent to ${email}`;
+      btn.textContent = 'Verify & Reset';
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      
+    } catch (error) {
+      console.error('Email Error:', error);
+      forgotCode = null; // Reset so they can try again
+      btn.textContent = 'Send Reset Code';
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      return showErr('forgotErr', 'Failed to send email. Try again later.');
+    }
     return;
   }
+
+  // STEP 2: Verify the OTP and update password
+  const stored = JSON.parse(localStorage.getItem('msp_reset_' + email) || 'null');
+  
+  if (!stored || stored.code !== codeInp) {
+    return showErr('forgotErr', 'Invalid code. Check your email.');
+  }
+  
+  if (Date.now() > stored.exp) {
+    forgotCode = null;
+    sec.style.display = 'none';
+    return showErr('forgotErr', 'Code expired. Request a new one.');
+  }
+  
+  if (newPass.length < 6) {
+    return showErr('forgotErr', 'New password must be at least 6 characters.');
+  }
+
+  // Update LocalStorage "Database"
+  const users = JSON.parse(localStorage.getItem('msp_users') || '{}');
+  users[email].hash = hashPw(newPass);
+  localStorage.setItem('msp_users', JSON.stringify(users));
+  
+  // Cleanup
+  localStorage.removeItem('msp_reset_' + email);
+  forgotCode = null;
+  sec.style.display = 'none';
+  
+  // Success Feedback
+  errEl.style.display = 'block';
+  errEl.style.color = '#34d399';
+  errEl.textContent = 'Password updated! Redirecting to login...';
+
+  setTimeout(() => {
+    switchView('login');
+  }, 2000);
+}
   const stored=JSON.parse(localStorage.getItem('msp_reset_'+email)||'null');
-  if(!stored||stored.code!==codeInp)return showErr('forgotErr','Invalid code. Please try again.');
+  if(!stored||stored.code!==codeInp) return showErr('forgotErr','Invalid code. Please try again.');
   if(Date.now()>stored.exp){forgotCode=null;return showErr('forgotErr','Code expired. Please request a new one.');}
-  if(newPass.length<6)return showErr('forgotErr','Password must be at least 6 characters.');
+  if(newPass.length<6) return showErr('forgotErr','Password must be at least 6 characters.');
   const users=JSON.parse(localStorage.getItem('msp_users')||'{}');
   users[email].hash=hashPw(newPass);
   localStorage.setItem('msp_users',JSON.stringify(users));
@@ -1062,7 +1207,7 @@ function doForgot(){
   ok.textContent='Password updated! You can now sign in.';
   setTimeout(()=>switchView('login'),1500);
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAuth();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeAuth();});
 
 // Session personalisation
 const sess=localStorage.getItem('msp_session');
@@ -1071,7 +1216,9 @@ if(sess){
     const s=JSON.parse(sess);
     if(s&&s.name){
       document.querySelectorAll('[onclick*="signup"]').forEach(b=>{
-        if(b.textContent.match(/Start|Open|Access|Get Started/)){b.textContent=`Continue as ${s.name.split(' ')[0]} →`;}
+        if(b.textContent.match(/Start|Open|Access|Get Started/)){
+          b.textContent=`Continue as ${s.name.split(' ')[0]} →`;
+        }
       });
     }
   }catch(e){}
